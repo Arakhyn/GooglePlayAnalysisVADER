@@ -32,7 +32,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from sklearn.svm import SVC
 import statsmodels.api as sm
 from langdetect import detect, LangDetectException
-from googletrans import Translator
+
 import warnings
 import requests
 from bs4 import BeautifulSoup
@@ -456,24 +456,23 @@ def apply_keyword_and_date_filter(df, keyword, start_date, end_date):
     return filtered_df
 
 
-def translate_to_english(comment):
-    translator = Translator()
-    translated = translator.translate(comment, src='auto', dest='en')
-    return translated.text
+#def translate_to_english(comment):
+#    translator = Translator()
+#    translated = translator.translate(comment, src='auto', dest='en')
+#    return translated.text
 
 
-def translate_comments(df):
-    def translate(comment):
-        translated = translate_to_english(comment)
-        return translated
+#def translate_comments(df):
+#    def translate(comment):
+#        translated = translate_to_english(comment)
+#        return translated
 
     # Create a ThreadPoolExecutor for parallel processing
-    max_workers = 8  # Adjust the number of workers as needed
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        translated_comments = list(executor.map(translate, df['Content']))
+#    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+#        translated_comments = list(executor.map(translate, df['Content']))
 
     # Update the DataFrame with translated comments
-    df['Content'] = translated_comments
+#    df['Content'] = translated_comments
 
 
 # FUNCIONES DE LOS MODELOS A ENTRENAR
